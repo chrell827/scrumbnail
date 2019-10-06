@@ -39,11 +39,12 @@ if(userGuess === computerChoice)
     clearGame();
 }
 
-else
+else if(guessesList.indexOf(userGuess) === -1)
 {
     guessesLeft--;
     guessesList.push(userGuess);
 }
+
 
 refreshStats();
 if(guessesLeft === 0)
