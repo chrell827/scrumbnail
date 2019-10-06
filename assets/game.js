@@ -9,12 +9,14 @@ var winsText = document.getElementById("wins");
 var lossesText = document.getElementById("losses");
 var guessesLeftText = document.getElementById("guessesleft");
 var guessesListText = document.getElementById("guesseslist");
+var repeatText = document.getElementById("sillygoose");
 
 var computerChoice = computerChoices[Math.floor(Math.random()*computerChoices.length)];
 
 function clearGame(){
     guessesLeftText.textContent = "Guesses Left: 10";
     guessesListText.textContent = "Your Guesses so far: ";
+    repeatText.textContent = "";
     guessesLeft = 10;
     guessesList = [];
     computerChoice = computerChoices[Math.floor(Math.random()*computerChoices.length)];
@@ -25,7 +27,6 @@ function refreshStats(){
     lossesText.textContent = "Losses: " + losses;
     guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
     guessesListText.textContent = "Your Guesses so far: " + guessesList;
-    
 }
 
 document.onkeyup = function(event) {
@@ -43,10 +44,15 @@ else if(guessesList.indexOf(userGuess) === -1)
 {
     guessesLeft--;
     guessesList.push(userGuess);
+    repeatText.textContent = "";
+}
+else
+{
+repeatText.textContent = "You already tried that letter, silly";
 }
 
-
 refreshStats();
+
 if(guessesLeft === 0)
 {
     losses++;
